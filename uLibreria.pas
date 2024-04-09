@@ -8,7 +8,7 @@ interface
     Data.Win.ADODB,  Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Option,
     MVCFramework.Commons, Uni, JsonDataObjects, JSON, VirtualQuery;
 
-// LÓGICA PROGRAMA CAMBIO GIT para desktop
+// LÃ³GICA PROGRAMA CAMBIO GIT para desktop ahora cambio en gitKraken
   function DaTextoTipoTrafico( const pLetraTipoTrafico:String):String;
   function CodificaVehiculo(const pTipo_veh, pNeurona, pEspecialidad:string):string;
 
@@ -32,19 +32,19 @@ interface
 // PASSWORD
       // Devuelve desencriptade la clave
   function DesencriptaClave(const pClaveEncrip:String):String;
-      // Devuelve clave encriptada o mensaje con error "Error: el carácter X no se admite en el password."
+      // Devuelve clave encriptada o mensaje con error "Error: el carï¿½cter X no se admite en el password."
   function EncriptaClave(const pClave:String):String;
     // Dado un pwd Virosque mezclado extraigo solo pwd
   function ExtraePwd (const pwdMezcla:String):String;
     // Dado un pwd Virosque mezclado extraigo solo Version
   function ExtraeVersion (const pwdMezcla:String):String;
-    // Dado un pwd Virosque mezclado extraigo solo opción
+    // Dado un pwd Virosque mezclado extraigo solo opciï¿½n
   function ExtraeModulo (const pwdMezcla:String):Integer;
     // Encriptar y desencriptar texto
   function EncryptStr(const pS :WideString; pKey: Word): String;
   function DecryptStr(const pS: String; pKey: Word): String;
 
-// TEXTO y FECHA y NUMERO #12 salto de página, #10 salto de línea
+// TEXTO y FECHA y NUMERO #12 salto de pï¿½gina, #10 salto de lï¿½nea
 // #13 retorno de carro, #9 tabulador horizontal, #11 tabulador vertical
   function FechaToTextoFechaTrimble( const pFecha:TDateTime):String;// 29/10/2022 11:11:11 fecha  -- > 2022-10-29T11:11:11.000
   function tDateTimetoSQLserverDate(const pFecha: TDateTime):string; // fecha -> 25/10/2022 14:28:30
@@ -99,16 +99,16 @@ interface
   function NumVecesEsta_Subcadena_EnCadena( const pSubcadena, pCadena:string):Integer;
      // Quita de una cadena todos los caracteres X. Ej: cadena, '['
   function LimpiarCadenaDeCaracter(const pCadena:string; const pCaracter: Char): string;
-     // Quita de una cadena todos los carácteres que no sean letras o numeros
+     // Quita de una cadena todos los carï¿½cteres que no sean letras o numeros
   function LimpiarCadenaSoloLetrasNumeros(const vCadena: string): string;
-     // Quita de una cadena todos los carácteres que no sean numeros
+     // Quita de una cadena todos los carï¿½cteres que no sean numeros
   function LimpiarCadenaSoloNumeros(const vCadena: string): string;
-     // Genera una cadena con letras aleatorias (tamaño longitud)
+     // Genera una cadena con letras aleatorias (tamaï¿½o longitud)
   function PalabraAleatoria(const pLongitud: integer): string;
      // Cambiar en cadena una subcadena por otra
   function CambiaEn(const pCadena, pOri, pDes:String):String;
   function FloatToSQLnum(const pNum:Double):String; // 23,5 ---> "23.5"
-     // Posición de Primer carácter no numérico
+     // Posiciï¿½n de Primer carï¿½cter no numï¿½rico
   function PosNoNum(const pTexto:String):Integer;
   function DameNumDeTexto(const pText: string): Integer;
       // Da Ruta de archivo   c:\proy\cod\gest\hola.exe --> c:\proy\cod\gest\
@@ -127,7 +127,7 @@ interface
 
 
   // API Windows
-     // Devuelve el nombre de la máquina y del usuario que ejecuta.
+     // Devuelve el nombre de la mï¿½quina y del usuario que ejecuta.
   function  GetCurrentUserName(out DomainName, UserName: string): Boolean;
   procedure CierraMiAplicacion( const NombreAplicacion:PWideChar);
   procedure CambiaENTERporTABenKeyPress(var Key:PChar);
@@ -164,7 +164,7 @@ const
    ('Enero','Febrero',     'Marzo',  'Abril',     'Mayo',  'Junio',
     'Julio', 'Agosto','Septiembre','Octubre','Noviembre','Diciembre');
   DIAS: Array [1..7] Of String =
-   ('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
+   ('Lunes', 'Martes', 'Miï¿½rcoles', 'Jueves', 'Viernes', 'Sï¿½bado', 'Domingo');
   PI: Double = 3.14159265358979323846;
   RADIO_TIERRA_EN_KILOMETROS: Double = 6371.0;
   TIPOS_VEHICULO: Array [1..9] Of String =
@@ -184,7 +184,7 @@ const
   URLtorre:String = 'http://172.16.1.118:8091/apiU/torre';}
 implementation
 
-// LÓGICA APLICACIÓN
+// Lï¿½GICA APLICACIï¿½N
 function DaTextoTipoTrafico( const pLetraTipoTrafico:String):String;
 begin
   Case IndexStr(pLetraTipoTrafico, ['P', 'A', 'E', 'H']) of
@@ -511,25 +511,25 @@ var
   vLetrasOri, vLetrasDest:String;
   i:Integer;
 begin
-  vLetrasOri  := 'L9A-Zza+Yb*rKs.Wd,oI8;_V&0Cl=){RyT[fXc]?¿iE(G$3HÑJ%1M|x4NOP}QSuU!F6g2jk#mn·ñBpe:qt@7hDv¡5w';
-  vLetrasDest := 'I¡Bl4!e5ñH9AgV·Ck.FUmjb+Nq)Kw{G?P6x0:r7=(fhÑOQR]¿EDno@8J,;3L2M1Sz_y-v*u}$t[s|p%i&ZaYcXdW#T';
+  vLetrasOri  := 'L9A-Zza+Yb*rKs.Wd,oI8;_V&0Cl=){RyT[fXc]?ï¿½iE(G$3Hï¿½J%1M|x4NOP}QSuU!F6g2jk#mnï¿½ï¿½Bpe:qt@7hDvï¿½5w';
+  vLetrasDest := 'Iï¿½Bl4!e5ï¿½H9AgVï¿½Ck.FUmjb+Nq)Kw{G?P6x0:r7=(fhï¿½OQR]ï¿½EDno@8J,;3L2M1Sz_y-v*u}$t[s|p%i&ZaYcXdW#T';
   result := '';
   for i := 1 to pClaveEncrip.Length do
      result := result + vLetrasOri[Pos( pClaveEncrip[i], vLetrasDest)];
 end;
 
 function EncriptaClave(const  pClave:String):String;
-var  // Devuelve clave encriptada o mensaje con error "Error: el carácter X no se admite en el password."
+var  // Devuelve clave encriptada o mensaje con error "Error: el carï¿½cter X no se admite en el password."
   vLetrasOri, vLetrasDest:String;
   i, j:Integer;
 begin
-  vLetrasOri  := 'L9A-Zza+Yb*rKs.Wd,oI8;_V&0Cl=){RyT[fXc]?¿iE(G$3HÑJ%1M|x4NOP}QSuU!F6g2jk#mn·ñBpe:qt@7hDv¡5w';
-  vLetrasDest := 'I¡Bl4!e5ñH9AgV·Ck.FUmjb+Nq)Kw{G?P6x0:r7=(fhÑOQR]¿EDno@8J,;3L2M1Sz_y-v*u}$t[s|p%i&ZaYcXdW#T';
+  vLetrasOri  := 'L9A-Zza+Yb*rKs.Wd,oI8;_V&0Cl=){RyT[fXc]?ï¿½iE(G$3Hï¿½J%1M|x4NOP}QSuU!F6g2jk#mnï¿½ï¿½Bpe:qt@7hDvï¿½5w';
+  vLetrasDest := 'Iï¿½Bl4!e5ï¿½H9AgVï¿½Ck.FUmjb+Nq)Kw{G?P6x0:r7=(fhï¿½OQR]ï¿½EDno@8J,;3L2M1Sz_y-v*u}$t[s|p%i&ZaYcXdW#T';
   result := '';
   for i := 1 to pClave.Length do begin
      j := Pos(pClave[i], vLetrasOri);
      if j=-1 then begin
-       result := 'Error: el carácter '+ pClave[i]+' no se admite en el password.';
+       result := 'Error: el carï¿½cter '+ pClave[i]+' no se admite en el password.';
        exit;
      end else
        result := result + vLetrasDest[j]
@@ -537,36 +537,36 @@ begin
 end;
 
 function ExtraePwd (const pwdMezcla:String):String;
-var           // 2022-08-A#·Virosque2022·#1
+var           // 2022-08-A#ï¿½Virosque2022ï¿½#1
   i:Integer;
   pwd:String;
 begin
   pwd := pwdMezcla;
-  if Pos('·#', pwdMezcla)>0 then begin
+  if Pos('ï¿½#', pwdMezcla)>0 then begin
     i := Length(pwdMezcla);
-    while (pwdMezcla[i] <> '·') do
+    while (pwdMezcla[i] <> 'ï¿½') do
       i := i-1;
     pwd := Copy(pwdMezcla, 1, i-1);
   end;
-  i := Pos('#·', pwd);
+  i := Pos('#ï¿½', pwd);
   if i>0 then
     pwd := Copy(pwd, i+2, Length(pwd));
   result := pwd;
 end;
 
 function ExtraeVersion (const pwdMezcla:String):String;
-begin                   // 2022-08-A#·Virosque2022·#1
-  result := IIF( Pos('#·', pwdMezcla)>0, Copy(pwdMezcla, 1, Pos('#·', pwdMezcla)-1), '');
+begin                   // 2022-08-A#ï¿½Virosque2022ï¿½#1
+  result := IIF( Pos('#ï¿½', pwdMezcla)>0, Copy(pwdMezcla, 1, Pos('#ï¿½', pwdMezcla)-1), '');
 end;
 
 function ExtraeModulo (const pwdMezcla:String):Integer;
-var                     // 2022-08-A#·Virosque2022·#1
+var                     // 2022-08-A#ï¿½Virosque2022ï¿½#1
   i:Integer;
 begin
   result := 0;
-  if Pos('·#',pwdMezcla)>0 then begin
+  if Pos('ï¿½#',pwdMezcla)>0 then begin
     i := Length(pwdMezcla);
-    while (pwdMezcla[i] <> '·') do
+    while (pwdMezcla[i] <> 'ï¿½') do
       i := i-1;
     try
       result := StrtoInt(Copy(pwdMezcla, i+2, Length(pwdMezcla)-i));
@@ -786,10 +786,10 @@ var      viDia, viMes, viAno: word;
 begin
     DecodeDate(pFecha, viAno, viMes, viDia);
     viMes := viMes + 1;       //Avanzamos un mes.
-    if viMes = 13 then begin     //Si nos hemos pasado, avanzamos el año.
+    if viMes = 13 then begin     //Si nos hemos pasado, avanzamos el aï¿½o.
       viMes := 1;
       viAno := viAno + 1;
-    end;    //Y devolvemos el día anterior al primer día del mes siguiente.
+    end;    //Y devolvemos el dï¿½a anterior al primer dï¿½a del mes siguiente.
     result := EncodeDate(viAno, viMes, 1) - 1;
 end;
 
@@ -952,7 +952,7 @@ function FloatToSQLnum(const pNum:Double):String; // 23,5 ---> "23.5"
 begin    Result := ReplaceStr(FloatToStr(pNum), ',', '.');          end;
 
 function PosNoNum(const pTexto:String):Integer;
-var      i: Integer; // Posición del primer carácter no numérico de un string
+var      i: Integer; // Posiciï¿½n del primer carï¿½cter no numï¿½rico de un string
 begin
   for I := 1 to Length(pTexto) do
     if not IsNumber(pTexto[i]) then begin
@@ -981,9 +981,9 @@ end;
 function DameNumDeTexto(const pText: string): Integer;
 var
   vRegex: TRegEx;   vMatch: TMatch;
-begin             // Define la expresión regular para buscar números en el texto
+begin             // Define la expresiï¿½n regular para buscar nï¿½meros en el texto
   vRegex := TRegEx.Create('\d+');
-  // Busca la primera coincidencia de la expresión regular en el texto
+  // Busca la primera coincidencia de la expresiï¿½n regular en el texto
   vMatch := vRegex.Match(pText);
   if vMatch.Success then Result := StrToInt(vMatch.Value)
                     else Result := 0;
@@ -1062,7 +1062,7 @@ end;
 
 // API WINDOWS
 function GetCurrentUserName(out DomainName, UserName: string): Boolean;
-var       // Devuelve el nombre de la máquina y del usuario que ejecuta.
+var       // Devuelve el nombre de la mï¿½quina y del usuario que ejecuta.
   Token: THandle;
   InfoSize, UserNameSize, DomainNameSize: Cardinal;
   User: PTokenUser;
