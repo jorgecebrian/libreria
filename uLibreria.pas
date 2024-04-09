@@ -8,7 +8,7 @@ interface
     Data.Win.ADODB,  Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Option,
     MVCFramework.Commons, Uni, JsonDataObjects, JSON, VirtualQuery;
 
-// LÓGICA PROGRAMA CAMBIO GIT
+// LÓGICA PROGRAMA CAMBIO GIT para desktop
   function DaTextoTipoTrafico( const pLetraTipoTrafico:String):String;
   function CodificaVehiculo(const pTipo_veh, pNeurona, pEspecialidad:string):string;
 
