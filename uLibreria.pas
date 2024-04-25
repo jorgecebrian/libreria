@@ -7,6 +7,7 @@ interface
     Winapi.Windows, Winapi.ShellAPI, Messages,
     Data.Win.ADODB,  Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Option,
     MVCFramework.Commons, JsonDataObjects, JSON;
+    MVCFramework.Commons, JsonDataObjects, JSON;
 
 // TABLAS
       // Copia contenido tabla UNI en tabla Firedac MEM
@@ -169,15 +170,6 @@ const
   TIPO_TRAZA_CARGA: String = ',01,02,10,11,12,13,14,15,16,20,21,22,23,24,25,';
   CKEY1 = 53761;  CKEY2 = 32618;
   NUMEROS: String = '1234567890';
-//                   172.16.1.118
-  URLobra: String = 'http://188.85.81.2:8091/apiU/Obra';
-  URLpubl: String = 'http://188.85.81.2:8091/api';
-  URLpriv: String = 'http://188.85.81.2:8091/apiU/privado';
-  URLtorre:String = 'http://188.85.81.2:8091/apiU/torre';
-{  URLobra: String = 'http://127.0.0.1:8091/apiU/Obra';
-  URLpubl: String = 'http://127.0.0.1:8091/api';
-  URLpriv: String = 'http://127.0.0.1:8091/apiU/privado';
-  URLtorre:String = 'http://172.16.1.118:8091/apiU/torre';}
 implementation
 
 // TABLA
@@ -605,14 +597,6 @@ begin
         ' '+RightStr('0'+IntToStr(vHora),2)+':'+RightStr('0'+IntToStr(vMin),2)+':'+RightStr('0'+IntToStr(vSec),2);
 end;
 
-{function TDatetoSQLfecha(const pFecha:TDate):string;
-var      vYear, vMes, vDia: Word;
-begin  //  fecha tDate 14/01/2023 -->  2023-01-14
-  DecodeDate(pFecha, vYear, vMes, vDia);
-  Result := IntToStr(vYear)+'-'+RightStr('0'+IntToStr(vMes),2)
-                           +'-'+RightStr('0'+IntToStr(vDia),2);
-end;}
-
 function FechaToSQLtexto(const pFecha:TDate):String;
 var      vYear, vMes, vDia: Word;                  //
 begin  //  fecha tDate 14/01/2023 -->  CONVERT(DATETIME, '2020-01-14', 102)
@@ -732,9 +716,6 @@ begin
   end;
 end;
 
-
-
-
 function FechayHoraToFechaHora( const pFecha, pHora:TDateTime):TDateTime;
 begin   //2023-03-29 00:00 y 1899-12-31 11:11:11.000 --> 29/03/2023 11:11:11
   Result := StrToDateTime( Copy(DateTimeToStr(pFecha),1,11)+Copy(DateTimeToStr(pHora),12,8));
@@ -773,9 +754,6 @@ end;
 function PonMedianocheIni(const pFecha:TDateTime):TDateTime;
 var      vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
 begin
-{  vFechaTex := FechaToTextoFechaTrimble( pFecha);
-  vFechaTex := LeftStr(vFechaTex,11)+'00:00:00.000';
-  result    := FechaTextoTrimbleToDateTime( vFechaTex);}
   DecodeDateTime(pFecha, vYear, vMes, vDia, vHor, vMin, vSec, vMse);
   result := EncodeDateTime(vYear, vMes, vDia, 0, 0, 0, 0);
 end;
@@ -783,9 +761,6 @@ end;
 function PonMedianocheFin(const pFecha:TDateTime):TDateTime;
 var      vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
 begin
-{  vFechaTex := FechaToTextoFechaTrimble( pFecha);
-  vFechaTex := LeftStr(vFechaTex,11)+'23:59:59.999';
-  result    := FechaTextoTrimbleToDateTime( vFechaTex);   IncMilliSecond()}
   DecodeDateTime(pFecha, vYear, vMes, vDia, vHor, vMin, vSec, vMse);
   result :=  EncodeDateTime(vYear, vMes, vDia, 23, 59, 59, 999);
 end;
@@ -928,7 +903,6 @@ begin
   result := LeftStr(pArchivo, i);
 end;
 
-
 function PalabraAleatoria(const pLongitud: integer): string;
 const  Letras = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var    i : integer;
@@ -947,7 +921,6 @@ begin             // Define la expresión regular para buscar números en el texto
   if vMatch.Success then Result := StrToInt(vMatch.Value)
                     else Result := 0;
 end;
-
 
 function gradosARadianes(const pGrados:Double):Double;
 begin
@@ -1141,17 +1114,6 @@ begin
   result := objQuery.RecordCount;
 end;
 
-{function LeeSQL( textoSQL:String; var objQuery:TVirtualQuery):integer; overload;
-begin
-  if objQuery.Active then objQuery.Active := False;
-  objQuery.SQL.Text := textoSQL;
-  try       objQuery.Active := True;
-            objQuery.First;
-  except    on Exception do
-  end;
-  result := objQuery.RecordCount;
-end;
-}
 function LeeSQL( textoSQL:String; var objQuery:TFDQuery):integer; overload;
 begin
   if objQuery.Active then objQuery.Active := False;
@@ -1182,15 +1144,5 @@ begin
   end;
   objQuery.Close;
 end;
-
-{procedure EscribeSQL( textoSQL:String; objQuery:TVirtualQuery); overload;
-begin
-  if objQuery.Active then objQuery.Active := False;
-  objQuery.SQL.Text := textoSQL;
-  try       objQuery.ExecSQL;
-  except    on Exception do
-  end;
-  objQuery.Close;
-end;}
 
 end.
