@@ -4,19 +4,23 @@ interface
     System.SysUtils, System.StrUtils, System.Classes, System.DateUtils,
     System.Math, System.Character, System.RegularExpressions,
     Vcl.StdCtrls, Vcl.Controls, Vcl.Forms,
-    Winapi.Windows, Winapi.ShellAPI, Messages, cxGrid, cxGridExportLink,
+    Winapi.Windows, Winapi.ShellAPI, Messages,
     Data.Win.ADODB,  Data.DB, FireDAC.Comp.Client, FireDAC.Stan.Option,
+<<<<<<< Updated upstream
     MVCFramework.Commons, Uni, JsonDataObjects, JSON, VirtualQuery;
 
 // LÓGICA PROGRAMA CAMBIO GIT para desktop
   function DaTextoTipoTrafico( const pLetraTipoTrafico:String):String;
   function CodificaVehiculo(const pTipo_veh, pNeurona, pEspecialidad:string):string;
+=======
+    MVCFramework.Commons, JsonDataObjects, JSON;
+>>>>>>> Stashed changes
 
 // TABLAS
       // Copia contenido tabla UNI en tabla Firedac MEM
-  procedure CopiaContenidoTablas( Torigen:TuniTable; TDestino:TFDMemTable); overload;
-  procedure CopiaContenidoTablas( Torigen:TFDMemTable; TDestino:TuniTable; const borraDestino:Boolean); overload;
-  procedure ActualizaContenidoTabla( Torigen:TFDMemTable; TDestino:TuniTable);
+  procedure CopiaContenidoTablas( Torigen:TFDTable; TDestino:TFDMemTable); overload;
+  procedure CopiaContenidoTablas( Torigen:TFDMemTable; TDestino:TFDTable; const borraDestino:Boolean); overload;
+  procedure ActualizaContenidoTabla( Torigen:TFDMemTable; TDestino:TFDTable);
   procedure AceleraTabla( pTabla:TFDMemTable);
   function  GeneraListaIdBorrarRESTdeMemTabla( pTMem:TFDMemTable):String;
 // JSON
@@ -147,12 +151,12 @@ interface
 //  SQL
      // Ejecuta SELECT proporcionada y devuelve RecordCount, no cierra
   function LeeSQL( textoSQL:String; var objQuery:TADOQuery):integer; overload;
-  function LeeSQL( textoSQL:String; var objQuery:TVirtualQuery):integer; overload;
-  function LeeSQL( textoSQL:String; var objQuery:TUniQuery):integer; overload;
+//  function LeeSQL( textoSQL:String; var objQuery:TVirtualQuery):integer; overload;
+  function LeeSQL( textoSQL:String; var objQuery:TFDQuery):integer; overload;
      // Ejecuta SQL de escritura proporcionada, cierra, no devuelve nada.
   procedure EscribeSQL( textoSQL:String; objQuery:TADOQuery); overload;
-  procedure EscribeSQL( textoSQL:String; objQuery:TVirtualQuery); overload;
-  procedure EscribeSQL( textoSQL:String; objQuery:TUniQuery); overload;
+//  procedure EscribeSQL( textoSQL:String; objQuery:TVirtualQuery); overload;
+  procedure EscribeSQL( textoSQL:String; objQuery:TFDQuery); overload;
 
   type    // Para funcion GetCurrentUserName
     PTokenUser = ^TTokenUser;
@@ -184,6 +188,7 @@ const
   URLtorre:String = 'http://172.16.1.118:8091/apiU/torre';}
 implementation
 
+<<<<<<< Updated upstream
 // LÓGICA APLICACIÓN
 function DaTextoTipoTrafico( const pLetraTipoTrafico:String):String;
 begin
@@ -221,8 +226,10 @@ begin//TIPOS_VEHICULO: Array [1..9] Of String=('FURGONETA','TURISMO','TRACTORA',
   result := LeftStr(vCod+'000',3);
 end;
 
+=======
+>>>>>>> Stashed changes
 // TABLA
-procedure CopiaContenidoTablas( Torigen:TuniTable; TDestino:TFDMemTable); overload;
+procedure CopiaContenidoTablas( Torigen:TFDTable; TDestino:TFDMemTable); overload;
 var
   i, j:Integer;
 begin
@@ -256,14 +263,14 @@ begin
   TDestino.EnableControls;
 end;
 
-procedure CopiaContenidoTablas( Torigen:TFDMemTable; TDestino:TuniTable; const borraDestino:Boolean); overload;
+procedure CopiaContenidoTablas( Torigen:TFDMemTable; TDestino:TFDTable; const borraDestino:Boolean); overload;
 var
   i, j:Integer;
 begin
   Torigen.DisableControls;
   TDestino.DisableControls;
   if Tdestino.Active = False then Tdestino.Open;
-  if borraDestino then Tdestino.EmptyTable;
+  if borraDestino then Tdestino.EmptyDataSet;
   if Torigen.Active = False then
     Torigen.Open;
   Torigen.First;
@@ -284,7 +291,7 @@ begin
   TDestino.First;     TDestino.EnableControls;
 end;
 
-procedure ActualizaContenidoTabla( Torigen:TFDMemTable; TDestino:TuniTable);
+procedure ActualizaContenidoTabla( Torigen:TFDMemTable; TDestino:TFDTable);
 var    // Personalizado para Captura trazas trimble, tabla resumen
   i, j:Integer;  vFiltro:String;
 begin
@@ -812,7 +819,7 @@ begin
 end;
 
 function PonMedianocheIni(const pFecha:TDateTime):TDateTime;
-var      vFechaTex:String;    vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
+var      vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
 begin
 {  vFechaTex := FechaToTextoFechaTrimble( pFecha);
   vFechaTex := LeftStr(vFechaTex,11)+'00:00:00.000';
@@ -822,7 +829,7 @@ begin
 end;
 
 function PonMedianocheFin(const pFecha:TDateTime):TDateTime;
-var      vFechaTex:String;    vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
+var      vYear, vMes, vDia, vHor, vMin, vSec, vMse: Word;
 begin
 {  vFechaTex := FechaToTextoFechaTrimble( pFecha);
   vFechaTex := LeftStr(vFechaTex,11)+'23:59:59.999';
@@ -1182,7 +1189,7 @@ begin
   result := objQuery.RecordCount;
 end;
 
-function LeeSQL( textoSQL:String; var objQuery:TVirtualQuery):integer; overload;
+{function LeeSQL( textoSQL:String; var objQuery:TVirtualQuery):integer; overload;
 begin
   if objQuery.Active then objQuery.Active := False;
   objQuery.SQL.Text := textoSQL;
@@ -1192,8 +1199,8 @@ begin
   end;
   result := objQuery.RecordCount;
 end;
-
-function LeeSQL( textoSQL:String; var objQuery:TUniQuery):integer; overload;
+}
+function LeeSQL( textoSQL:String; var objQuery:TFDQuery):integer; overload;
 begin
   if objQuery.Active then objQuery.Active := False;
   objQuery.SQL.Text := textoSQL;
@@ -1214,7 +1221,7 @@ begin
   objQuery.Close;
 end;
 
-procedure EscribeSQL( textoSQL:String; objQuery:TVirtualQuery); overload;
+procedure EscribeSQL( textoSQL:String; objQuery:TFDQuery); overload;
 begin
   if objQuery.Active then objQuery.Active := False;
   objQuery.SQL.Text := textoSQL;
@@ -1224,7 +1231,7 @@ begin
   objQuery.Close;
 end;
 
-procedure EscribeSQL( textoSQL:String; objQuery:TUniQuery); overload;
+{procedure EscribeSQL( textoSQL:String; objQuery:TVirtualQuery); overload;
 begin
   if objQuery.Active then objQuery.Active := False;
   objQuery.SQL.Text := textoSQL;
@@ -1232,7 +1239,6 @@ begin
   except    on Exception do
   end;
   objQuery.Close;
-end;
-
+end;}
 
 end.
